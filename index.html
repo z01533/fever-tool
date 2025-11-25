@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>My Tool</title>
+  <title>網址產生器</title>
+  <style>
+    body {
+      font-family: Arial, "微軟正黑體";
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
+    #resultBox {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      word-break: break-all;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello GitHub Pages!</h1>
+
+  <h2>網址產生器</h2>
+
+  <label>輸入代碼：</label>
+  <input type="text" id="inputCode" placeholder="例如：A00001">
+
+  <button onclick="generateURL()">產生網址</button>
+
+  <div id="resultBox" style="display:none;">
+    <p><strong>產生結果：</strong></p>
+    <p id="outputURL"></p>
+    <button onclick="copyURL()">複製網址</button>
+  </div>
+
+  <script>
+    function generateURL() {
+      const code = document.getElementById("inputCode").value.trim();
+      if (!code) {
+        alert("請輸入內容！");
+        return;
+      }
+
+      const url = `https://lihi.cc/ZewMg/${code}`;
+      document.getElementById("outputURL").innerText = url;
+      document.getElementById("resultBox").style.display = "block";
+    }
+
+    function copyURL() {
+      const text = document.getElementById("outputURL").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("已複製到剪貼簿！");
+      });
+    }
+  </script>
+
 </body>
 </html>
